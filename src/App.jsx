@@ -1,4 +1,5 @@
 import Discription from "./components/Discription"
+import Navbar from "./components/Navbar"
 
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
   return (
   
       <div>
-       <Discription/>
+        <Navbar/>
+       
+      
       </div>
   )
 }
