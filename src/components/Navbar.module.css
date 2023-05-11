@@ -9,6 +9,7 @@ body {
 
 .Nav {
     margin-top: 0%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 
@@ -16,11 +17,11 @@ body {
     display: flex;
     justify-content: space-around;
     background-color: rgba(250, 235, 215, 0.38);
-    /* padding-bottom: 0.2rem; */
     margin-top: -1%;
     margin-left: -0.5%;
     margin-right: -0.5%;
     cursor: pointer;
+   
 
 
 
@@ -29,14 +30,13 @@ body {
 .mainNav button {
     background-color: rgba(137, 90, 3, 0.339);
     border: none;
-    /* margin-top: .2rem; */
     border-radius: 5px;
     font-size: medium;
     height: 2em;
     width: 5em;
     cursor: pointer;
-    /* margin: .6rem; */
     margin-top: .8rem;
+    box-shadow: rgba(0, 0, 0, 0.88) 1.95px 1.95px 2.6px;
 }
 
 .mainNav ul {
@@ -53,7 +53,7 @@ body {
 
 .mainNav h2 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: medium;
+    font-size: large;
     color: rgb(91, 16, 16);
     padding-top: .5rem;
 }
@@ -64,8 +64,3 @@ li:hover {
 }
 
 
-@media (max-width:650) {
-    .mainNav {
-        flex-direction: column;
-    }
-}
