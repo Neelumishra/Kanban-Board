@@ -1,3 +1,4 @@
+import Discription from "./components/Discription"
 
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
   
       <div>
+       <Discription/>
       </div>
   )
 }
