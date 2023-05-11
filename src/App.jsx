@@ -1,3 +1,7 @@
+
+import Discription from "./components/Discription"
+
+
 import Navbar from "./components/Navbar"
 
 
@@ -8,7 +12,7 @@ function App() {
   
       <div>
       <Navbar/>
-      </div>
+     </div>
   )
 }
 
