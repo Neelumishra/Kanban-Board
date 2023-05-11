@@ -1,0 +1,67 @@
+body {
+    background-image: url('https://images.pexels.com/photos/131667/pexels-photo-131667.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    
+   
+}
+
+.Nav {
+    margin-top: 0%;
+}
+
+
+.mainNav {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(250, 235, 215, 0.305);
+    padding: 0.2rem;
+    margin-top: -0.5%;
+    margin-left: -0.5%;
+    margin-right: -0.5%;
+    cursor: pointer;
+  
+
+}
+
+.mainNav button {
+    background-color: rgba(137, 90, 3, 0.339);
+    border: none;
+    margin: .2rem;
+    border-radius: 5px;
+    font-size: large;
+    height: 2em;
+    width: 5em;
+    cursor: pointer;
+}
+
+.mainNav ul {
+    margin-top: 0;
+}
+
+.mainNav li {
+
+    list-style: none;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 1rem;
+}
+
+.mainNav h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    color: rgb(91, 16, 16);
+}
+
+li:hover {
+    color: rgb(93, 13, 13);
+    transition: .2s ease-in-out;
+}
+
+
+@media  (max-width:650){
+    .mainNav{
+        flex-direction: column;
+    }
+}
