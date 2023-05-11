@@ -33,7 +33,7 @@ body {
     border-radius: 5px;
     font-size: medium;
     height: 2em;
-    width: 5em;
+    width:fit-content;
     cursor: pointer;
     margin-top: .8rem;
     box-shadow: rgba(0, 0, 0, 0.88) 1.95px 1.95px 2.6px;
