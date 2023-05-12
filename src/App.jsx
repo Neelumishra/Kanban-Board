@@ -1,19 +1,12 @@
-
-import Discription from "./components/Discription"
-
-
-import Navbar from "./components/Navbar"
-
+import React from "react";
+import Homepage from "./pages/homepage";
 
 function App() {
- 
-
   return (
-  
-      <div>
-      <Navbar/>
-     </div>
-  )
+    <div>
+    <Homepage/>
+    </div>
+  );
 }
 
-export default App
+export default App;
