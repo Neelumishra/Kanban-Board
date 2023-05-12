@@ -1,0 +1,99 @@
+.mainone{ 
+    display: flex;
+    gap: 1rem;
+}
+
+ .cookblock span:nth-child(1){
+  font-size: large;
+  font-weight: 700;
+  }
+ 
+  .first_second{
+    padding-top: 1.5rem;
+  }
+  .first_second span:nth-child(1){
+    font-size: small;
+  }
+  .first_second button{
+   background-color: rgb(230, 230, 238);
+   border: none;
+   padding: 5px;
+   margin-top: 8px;
+   border-radius: 5px;
+  }
+
+  
+
+  .maintwo{
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  
+   .second{
+    margin-top: -1.6rem;
+   }
+   .second p{
+   margin-top: -1rem;
+   background-color: rgb(230, 230, 238);
+   padding: 15px;
+   width: 25rem;
+
+   }
+   .second h4{
+    font-size: larger;
+   }
+
+
+   .thirdone{
+    display: flex;
+    gap: 1rem;
+   }
+  .thirdone span:nth-child(3){
+    background-color:rgb(246, 242, 242) ;
+    margin-left: 17rem;
+    padding: 5px;
+  }
+  .activity{
+    font-size: larger;
+  }
+  .third_second{
+    margin-top: 1rem;
+    display: flex;
+  }
+  .pr{
+    background-color: orange;
+    padding: 8px;
+    border-radius: 50%;
+    /* margin-left:-5px; */
+  }
+  .third_second input{
+    margin-left: 10px;
+    width: 26rem;
+  }
+  .third_last{
+    margin-top:2rem ;
+   
+  }
+  .pr2{
+    background-color: orange;
+    padding: 8px;
+    border-radius: 50%;
+  }
+  .third_last span:nth-child(2){
+    margin-left: 12px;
+    
+ }
+  .time{
+    
+    padding-left: 3rem;
+  }
+
+  .container{
+    margin-left: 40%;
+    margin-top: 10%;
+    background-color: rgb(236, 243, 243);
+    padding: 2rem;
+    width: fit-content;
+  }

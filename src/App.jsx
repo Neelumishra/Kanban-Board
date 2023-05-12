@@ -1,18 +1,14 @@
 import Navbar from "./components/Navbar"
-import Modal from "./components/Modal/Modal"
+// import Modal from "./components/Modal/Modal"
+import React from "react";
+import Homepage from "./pages/homepage";
 
 function App() {
- 
-
   return (
-  
-      <div>
-      <Navbar/>
-      <Modal>
-        <p>This is modar props data</p>
-      </Modal>
-      </div>
-  )
+    <div>
+    <Homepage/>
+    </div>
+  );
 }
 
-export default App
+export default App;
