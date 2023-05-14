@@ -36,7 +36,7 @@ function AddNew({ type, parentId }) {
         style={{
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           backgroundColor: "white",
-          width: "15rem",
+          width: `${type?"100%":"15rem"}`,
           padding: "10px",
           color: "black",
           border: "none",
@@ -52,18 +52,16 @@ function AddNew({ type, parentId }) {
           display: "flex",
           justifyContent: "center",
           borderRadius: "5px",
-          width:"auto"
-         
+          width: "auto",
         }}
       >
         {" "}
         {isvisible && (
           <form onSubmit={submithandle}>
             <input
-              contentEditable
               placeholder={type ? "Enter Card Name" : "Enter List title.."}
               style={{
-                width: "13rem",
+                width:type?"100%": "13rem",
                 textAlign: "center",
                 height: "1.5rem",
                 marginTop: "0.2rem",
@@ -89,7 +87,7 @@ function AddNew({ type, parentId }) {
                 marginLeft: "3rem",
               }}
             >
-              {type?"Add Card":"Add List"}
+              {type ? "Add Card" : "Add List"}
             </button>
             <button
               type="submit"

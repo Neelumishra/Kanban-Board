@@ -2,6 +2,7 @@ import React from 'react'
 import style from './Navbar.module.css'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import BoltIcon from '@mui/icons-material/Bolt';
+
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import FilterListIcon from '@mui/icons-material/FilterList'; 
 import ShareIcon from '@mui/icons-material/Share';
