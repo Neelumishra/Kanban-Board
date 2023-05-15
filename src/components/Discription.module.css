@@ -1,6 +1,7 @@
 .mainone{ 
     display: flex;
     gap: 1rem;
+    
 }
 
  .cookblock span:nth-child(1){
@@ -91,8 +92,6 @@
   }
 
   .container{
-    margin-left: 40%;
-    margin-top: 10%;
     background-color: rgb(236, 243, 243);
     padding: 2rem;
     width: fit-content;
