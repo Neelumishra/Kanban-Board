@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <div className={style.Nav} >
             <ul className={style.mainNav} >
-                <h1>Home Task Management</h1>
+                <h1>Kanban Board</h1>
     
             </ul>
         </div>

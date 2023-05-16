@@ -1,5 +1,6 @@
 body {
-    background-image: url('https://images.pexels.com/photos/131667/pexels-photo-131667.jpeg');
+    /* background-image: url('https://images.pexels.com/photos/131667/pexels-photo-131667.jpeg'); */
+    background-image: url(' https://cdn.pixabay.com/photo/2017/10/27/15/12/geeks-2894621_960_720.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -14,8 +15,9 @@ body {
 
 
 .mainNav {
+    justify-content: space-around;
     display: flex;
-    background-color: rgba(250, 235, 215, 0.38);
+    background-color: rgba(250, 235, 215, 0.412);
     margin-top: -1%;
     margin-left: -0.5%;
     margin-right: -0.5%;
@@ -37,7 +39,7 @@ body {
 .mainNav h1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: larger;
-    color: rgb(92, 61, 3);
+    color:rgb(89, 11, 11);
     padding-top: .5rem;
 }
 
