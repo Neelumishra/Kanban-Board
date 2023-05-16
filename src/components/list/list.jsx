@@ -8,6 +8,7 @@ function List() {
   });
 
   return (
+    
     <>
       {list.length > 0 &&
         list.map((e) => (
@@ -40,6 +41,7 @@ function List() {
         </div>
       </div>
     </>
+  
   );
 }
 
