@@ -15,7 +15,6 @@ body {
 
 .mainNav {
     display: flex;
-    justify-content: space-around;
     background-color: rgba(250, 235, 215, 0.38);
     margin-top: -1%;
     margin-left: -0.5%;
@@ -27,40 +26,20 @@ body {
 
 }
 
-.mainNav button {
-    background-color: rgba(137, 90, 3, 0.339);
-    border: none;
-    border-radius: 5px;
-    font-size: medium;
-    height: 2em;
-    width:fit-content;
-    cursor: pointer;
-    margin-top: .8rem;
-    box-shadow: rgba(0, 0, 0, 0.88) 1.95px 1.95px 2.6px;
-}
+
 
 .mainNav ul {
     margin-top: 0;
 }
 
-.mainNav li {
 
-    list-style: none;
-    font-size: medium;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 1rem;
-}
 
-.mainNav h2 {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: large;
-    color: rgb(91, 16, 16);
+.mainNav h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    color: rgb(92, 61, 3);
     padding-top: .5rem;
 }
 
-li:hover {
-    color: rgb(93, 13, 13);
-    transition: .2s ease-in-out;
-}
 
 
