@@ -1,7 +1,13 @@
-import React from "react";
+import React ,{ useState } from "react";
+import Carddetails from "./Carddetail/Carddetails";
+
 
 function Cards({ cardInfo }) {
+  const [modalOpen, setModalOpen]= useState(false)
   return (
+    <>
+    <div onClick={()=>setModalOpen(true)}>
+     
     <p
       style={{
         backgroundColor: "white",
@@ -16,6 +22,9 @@ function Cards({ cardInfo }) {
     >
       {cardInfo.title}
     </p>
+    </div>
+    {modalOpen && <Carddetails  onClose={()=> setModalOpen(false)}/>}
+    </>
   );
 }
 
