@@ -9,6 +9,7 @@ import { todolist } from "../store/store";
 
 function Discription() {
   const [title, settitle] = useState("");
+  const [discription, setDiscription] = useState("");
   let { paramsid } = useParams();
   let navigate = useNavigate();
   const containerRef = useRef(null);
@@ -17,9 +18,11 @@ function Discription() {
     return state.Todo.list;
   });
 
+
+
   useEffect(() => {
     list.map((e) => {
-      e.children.map((child) => {
+      e?.children?.map((child) => {
         if (child.id == paramsid) {
           settitle(child.title);
         }
@@ -40,6 +43,27 @@ function Discription() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+   function getTimeAgo(date) {
+    const currentDate = new Date();
+    const timestamp = date.getTime();
+    const currentTimestamp = currentDate.getTime();
+    const difference = currentTimestamp - timestamp;
+    const minutes = Math.floor(difference / 60000); // Divide by 60000 to convert milliseconds to minutes
+    return minutes + " minutes ago";
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDiscription(getTimeAgo(new Date()));
+    }, 60000); // Update every minute
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  
+
 
   function handleChange(e) {
     const updatedTitle = e.target.value;
@@ -48,10 +72,17 @@ function Discription() {
       todolist.actions.onUpdate({ childId: paramsid, value: updatedTitle })
     );
   }
+   function getTimeAgo(date) {
+     const currentDate = new Date();
+     const timestamp = date.getTime();
+     const currentTimestamp = currentDate.getTime();
+     const difference = currentTimestamp - timestamp;
+     const minutes = Math.floor(difference / 60000); // Divide by 60000 to convert milliseconds to minutes
+     return minutes + " minutes ago";
+   }
 
   return (
     <>
-    
       <div className={styles.container} ref={containerRef}>
         <div className={styles.mainone}>
           <div>
@@ -80,8 +111,17 @@ function Discription() {
           </div>
           <div className={styles.second}>
             <h4>Description</h4>
-            <br />
-            <p>Add a more detailed description...</p>
+
+            <p>{discription}</p>
+            <textarea
+              type="textarea"
+              placeholder="Add a more detailed description..."
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setDiscription(e.target.value);
+                }
+              }}
+            ></textarea>
           </div>
         </div>
         <div className={styles.mainthird}>
@@ -108,7 +148,7 @@ function Discription() {
               <b>Partha Roy </b>added this card to To Do
             </span>
             <br />
-            <span className={styles.time}>2 minutes ago</span>
+            <span className={styles.time}>{discription}</span>
           </div>
         </div>
       </div>

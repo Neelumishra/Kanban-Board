@@ -42,9 +42,10 @@ function AddNew({ type, parentId }) {
           border: "none",
           borderRadius: "10px",
           marginBottom: "3px",
+          cursor:"pointer"
         }}
       >
-        + Add {type ? "a card" : "another list"}
+        + Add {type ? "a Card" : "Another List"}
       </button>
       <div
         style={{
@@ -59,14 +60,14 @@ function AddNew({ type, parentId }) {
         {isvisible && (
           <form onSubmit={submithandle}>
             <input
-              placeholder={type ? "Enter Card Name" : "Enter List title.."}
+              placeholder={type ? "Enter Task Name" : "Enter List Title.."}
               style={{
                 width:type?"100%": "13rem",
                 textAlign: "center",
                 height: "1.5rem",
                 marginTop: "0.2rem",
                 marginBottom: "5px",
-
+               
                 border: "2px solid #0c66e4",
               }}
               value={inputValue}
@@ -85,6 +86,7 @@ function AddNew({ type, parentId }) {
                 margin: "0.2rem",
                 borderRadius: "4px",
                 marginLeft: "3rem",
+                cursor:"pointer"
               }}
             >
               {type ? "Add Card" : "Add List"}
@@ -94,7 +96,7 @@ function AddNew({ type, parentId }) {
               onClick={hideform}
               style={{
                 fontWeight: "bold",
-
+                cursor:"pointer",
                 padding: "8px",
                 color: "black",
                 border: "none",

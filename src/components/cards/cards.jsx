@@ -1,17 +1,16 @@
-import React ,{useState}from "react";
-import "./cards.css"
+import React, { useState } from "react";
+import "./cards.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { todolist } from "../../store/store";
+
 function Cards({ cardInfo }) {
- 
-  
- const dispatch = useDispatch();
-function handleRemove(index){
-   
-  dispatch(todolist.actions.onremove(index));
-}
+  const dispatch = useDispatch();
+  function handleRemove(index) {
+    dispatch(todolist.actions.onremove(index));
+  }
+  console.log(cardInfo.id)
   return (
     <>
       <p
@@ -24,8 +23,10 @@ function handleRemove(index){
           alignItems: "center",
           justifyContent: "space-between",
           paddingLeft: "1rem",
-          paddingRight: "1rem",
+          paddingRight: "1.4rem",
           borderRadius: "10px",
+          border:"1px solid",
+          cursor:"pointer"
         }}
       >
         <span className="cardcss">

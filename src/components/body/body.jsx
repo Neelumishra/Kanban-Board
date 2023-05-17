@@ -13,8 +13,8 @@ function Body() {
   function handleDragEnd(result){
     console.log(result);
     // Extract source and destination id from result
-    const sourceId = result.source.droppableId;
-    const destinationId = result.destination.droppableId;
+    const sourceId = result?.source?.droppableId;
+    const destinationId = result?.destination?.droppableId;
 
     //find source id in list
     //---source.children extract the index object

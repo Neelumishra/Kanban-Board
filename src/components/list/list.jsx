@@ -3,21 +3,27 @@ import Cards from "../cards/cards";
 import AddNew from "../AddNew/addNew";
 import { useSelector } from "react-redux";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-
-
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useDispatch } from "react-redux";
+import { todolist } from "../../store/store";
+import { v4 as uuidv4 } from "uuid";
 function List() {
+  const dispatch = useDispatch();
   const list = useSelector((state) => {
     return state.Todo.list;
   });
-
+  function handleRemove(data) {
+    dispatch(todolist.actions.onremoveList(data));
+  }
   return (
     <>
-      {list.length > 0 &&
-        list.map((e) => (
-          <Droppable droppableId={e.id}>
+      {list?.length > 0 &&
+        list?.map((e) => (
+          <Droppable droppableId={e.id} key={uuidv4()}>
             {(provided) => (
               <div
+                className="helloji"
+                key={uuidv4()}
                 style={{ width: "20%", padding: "5px" }}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
@@ -30,8 +36,19 @@ function List() {
                     backgroundColor: "#e8d0bf",
                   }}
                 >
-                  <div key={e.id}>
-                    <h3 style={{ textAlign: "center" }}>{e.title}</h3>
+                  <div key={e.id} style={{ paddingLeft: "1rem",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+                    <h3
+                     
+                    >
+                      {e.title}
+                    </h3>{" "}
+                    <span>
+                      {" "}
+                      <DeleteIcon
+                       sx={{marginRight:"1.2rem"}}
+                        onClick={() => handleRemove(e)}
+                      />
+                    </span>
                   </div>
                   {e?.children?.length > 0 &&
                     e.children.map((children, i) => (
@@ -45,11 +62,10 @@ function List() {
                             ref={provided.innerRef}
                             {...provided.dragHandleProps}
                             {...provided.draggableProps}
+                          
                           >
-                           
-                              {" "}
-                              <Cards key={children.id} cardInfo={children} />
-                           
+                            {" "}
+                            <Cards key={children.id} cardInfo={children} />
                           </div>
                         )}
                       </Draggable>

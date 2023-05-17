@@ -2,6 +2,11 @@
     display: flex;
     gap: 1rem;
 }
+.container{
+ border: 1px solid;
+ margin-right: 400px;
+
+}
 
  .cookblock span:nth-child(1){
   font-size: large;
@@ -14,6 +19,7 @@
   .first_second span:nth-child(1){
     font-size: small;
   }
+  
   .first_second button{
    background-color: rgb(230, 230, 238);
    border: none;
