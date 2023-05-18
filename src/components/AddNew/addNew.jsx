@@ -9,6 +9,7 @@ function AddNew({ type, parentId }) {
   const [inputValue, setInputValue] = useState("");
   const [isvisible, setIsvisble] = useState(false);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -21,8 +22,9 @@ function AddNew({ type, parentId }) {
   }
 
   function submithandle(e) {
+    
     e.preventDefault();
-
+ 
     if (inputValue.trim() === "") {
       setError(true);
       return;
@@ -36,8 +38,10 @@ function AddNew({ type, parentId }) {
           parentId: parentId,
         })
       );
+      setSuccess(true);
     } else {
       dispatch(todolist.actions.onlist({ id: uuidv4(), title: inputValue }));
+      setSuccess(true);
     }
 
     hideform();
@@ -46,6 +50,10 @@ function AddNew({ type, parentId }) {
 
   function handleClose() {
     setError(false);
+  }
+
+  function handleCloseSuccess() {
+    setSuccess(false);
   }
 
   return (
@@ -61,6 +69,23 @@ function AddNew({ type, parentId }) {
       >
         <MuiAlert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
           Field cannot be left blank
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar
+        open={success}
+        autoHideDuration={6000}
+        onClose={handleCloseSuccess}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          onClose={handleCloseSuccess}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {type ? "Card" : "List"} has been Successfully Added
         </MuiAlert>
       </Snackbar>
 

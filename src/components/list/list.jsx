@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Cards from "../cards/cards";
 import AddNew from "../AddNew/addNew";
 import { useSelector } from "react-redux";
@@ -7,11 +7,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch } from "react-redux";
 import { todolist } from "../../store/store";
 import { v4 as uuidv4 } from "uuid";
+
 function List() {
   const dispatch = useDispatch();
   const list = useSelector((state) => {
     return state.Todo.list;
   });
+
+  const [editableTitle, setEditableTitle] = useState(""); // State for the editable title
+  const [isEditing, setIsEditing] = useState(false); // State to control editing mode
+
   function handleRemove(data) {
     dispatch(todolist.actions.onremoveList(data));
   }
@@ -22,7 +27,6 @@ function List() {
           <Droppable droppableId={e.id} key={uuidv4()}>
             {(provided) => (
               <div
-               
                 key={uuidv4()}
                 style={{ width: "20%", padding: "5px" }}
                 ref={provided.innerRef}
@@ -31,7 +35,6 @@ function List() {
                 <div
                   style={{
                     padding: "1rem",
-
                     color: "black",
                     backgroundColor: "#e8d0bf",
                   }}
@@ -43,7 +46,6 @@ function List() {
                       {e.title}
                     </h3>{" "}
                     <span>
-                      {" "}
                       <DeleteIcon
                        sx={{marginRight:"1.2rem"}}
                         onClick={() => handleRemove(e)}
@@ -62,9 +64,7 @@ function List() {
                             ref={provided.innerRef}
                             {...provided.dragHandleProps}
                             {...provided.draggableProps}
-                          
                           >
-                            {" "}
                             <Cards key={children.id} cardInfo={children} />
                           </div>
                         )}

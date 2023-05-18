@@ -1,8 +1,18 @@
 .mainone{ 
     display: flex;
-     gap:2rem
+     gap:2rem;
+     justify-content: space-between;
+    
    
 }
+.closeButton {
+  position: absolute;
+  top: 8.4rem;
+  right: 25.5rem;
+  cursor: pointer;
+ 
+}
+
 
 
  .cookblock span:nth-child(1){

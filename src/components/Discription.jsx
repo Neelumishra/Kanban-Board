@@ -1,86 +1,73 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Discription.module.css";
 import { BsCreditCard2Back } from "react-icons/bs";
-import { AiOutlineEye, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { todolist } from "../store/store";
 import Avatar from "@mui/joy/Avatar";
 function Discription() {
-   const [random, setRandom] = useState(Math.floor(Math.random() * 50));
-   const [images, setImages] = useState([]);
+  const [random, setRandom] = useState(Math.floor(Math.random() * 50));
+  const [images, setImages] = useState([]);
   const [title, settitle] = useState("");
-  const [discription, setDiscription] = useState('');
+  const [discription, setDiscription] = useState("");
   const [editable, setEditable] = useState(false);
   const [priority, setPriority] = useState("");
   const [Assign, setAssign] = useState("");
   const [time, setTime] = useState("");
+ const [comment, setComment] = useState("");
+  useEffect(() => {
+    dataFetch();
+  }, []);
 
- useEffect(() => {
-   dataFetch();
- }, []);
-
- function dataFetch() {
-   fetch("./user.json")
-     .then((r) => r.json())
-     .then((data) => {
-       console.log(data);
-       setImages(data[random]?.image)
-       
-     });
-     console.log("image",images)
- }
+  function dataFetch() {
+    fetch("./user.json")
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+        setImages(data[random]?.image);
+      });
+    console.log("image", images);
+  }
   let { paramsid } = useParams();
   let navigate = useNavigate();
-  const containerRef = useRef(null);
+
   let dispatch = useDispatch();
   const list = useSelector((state) => {
     return state.Todo.list;
   });
-console.log(list)
+  console.log(list);
   useEffect(() => {
     list.map((e) => {
       e?.children?.map((child) => {
         if (child.id == paramsid) {
           settitle(child.title);
-          setPriority(child.Priority)
-          setAssign(child.AssignName)
-          console.log(child.description)
+          setPriority(child.Priority);
+          setAssign(child.AssignName);
+          console.log(child.description);
           setDiscription(child.description);
-          setTime(getTime(child.dts))
-          console.log(discription)
+          setTime(getTime(child.dts));
+          setComment(child.comment)
+          console.log(discription);
         }
       });
     });
-    
 
-    function getTime(dts){
+    function getTime(dts) {
       // some cal
-      if(!dts) return "0"
-      const date = new Date()
-      const timeStamp = date.getTime()
-      const currentTime = timeStamp - dts
+      if (!dts) return "0";
+      const date = new Date();
+      const timeStamp = date.getTime();
+      const currentTime = timeStamp - dts;
       const minutes = Math.floor(currentTime / 60000);
 
       return minutes;
     }
-
-    function handleClickOutside(event) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target)
-      ) {
-        navigate(-1);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
   }, []);
-  
+  function handleNaviagte() {
+    navigate("/");
+  }
 
   const handleClick = () => {
     setEditable(true);
@@ -97,50 +84,72 @@ console.log(list)
       todolist.actions.onUpdate({ childId: paramsid, value: updatedTitle })
     );
   }
-  function handleAssign(e){
-   setAssign(e.target.value)
-   dispatch(todolist.actions.onAssign({ childId: paramsid ,AssignName:e.target.value}));
+  function handleAssign(e) {
+    setAssign(e.target.value);
+    dispatch(
+      todolist.actions.onAssign({
+        childId: paramsid,
+        AssignName: e.target.value,
+      })
+    );
   }
-  function handlePrority(e){
-  setPriority(e.target.value)
-  dispatch(todolist.actions.onPrority({ childId: paramsid ,Priority:e.target.value}));
+  function handleComment(e){
+   setComment(e.target.value);
+    dispatch(
+      todolist.actions.onComment({
+        childId: paramsid,
+        comment: e.target.value,
+      })
+    );
   }
-  function handleDescription(e){
-    setDiscription(e.target.value)
-      dispatch(
-        todolist.actions.onDescription({
-          childId: paramsid,
-          description:e.target.value
-        })
-      );
-
+  function handlePrority(e) {
+    setPriority(e.target.value);
+    dispatch(
+      todolist.actions.onPrority({
+        childId: paramsid,
+        Priority: e.target.value,
+      })
+    );
+  }
+  function handleDescription(e) {
+    setDiscription(e.target.value);
+    dispatch(
+      todolist.actions.onDescription({
+        childId: paramsid,
+        description: e.target.value,
+      })
+    );
   }
 
   return (
     <>
-      <div className={styles.container} ref={containerRef}>
+      <div className={styles.container}>
         <div className={styles.mainone}>
-          <div>
-            <span>
+          <div className={styles.mainone}>
+            <div>
               <BsCreditCard2Back />
-            </span>
-          </div>
-          <div className={styles.first_right}>
-            <div className={styles.cookblock}>
-              {editable ? (
-                <input
-                  value={title}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  autoFocus
-                />
-              ) : (
-                <h2 style={{ marginTop: "-.2rem" }} onClick={handleClick}>
-                  {title}
-                </h2>
-              )}
             </div>
-            <div className={styles.first_second}></div>
+            <div>
+              <div className={styles.cookblock}>
+                {editable ? (
+                  <input
+                    value={title}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    autoFocus
+                  />
+                ) : (
+                  <h2 style={{ marginTop: "-.2rem" }} onClick={handleClick}>
+                    {title}
+                  </h2>
+                )}
+              </div>
+
+              <div className={styles.first_second}></div>
+            </div>
+          </div>
+          <div className={styles.closeButton} onClick={handleNaviagte}>
+            ❌
           </div>
         </div>
 
@@ -246,9 +255,19 @@ console.log(list)
               <Avatar src={images} />
             </span>
             <input
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleComment(e);
+                }
+              }}
               style={{ width: "25rem", marginRight: "-5rem" }}
               placeholder="Write a comment..."
             ></input>
+          </div>
+          <div>
+           {comment&& <p
+              style={{ marginLeft: "3.6rem", fontFamily: "cursive" }}
+            >{`💬${comment}`}</p>}
           </div>
           <div
             style={{
