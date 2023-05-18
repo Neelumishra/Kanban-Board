@@ -1,27 +1,33 @@
 import React from 'react'
-import style from './Navbar.module.css'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import BoltIcon from '@mui/icons-material/Bolt';
+import style from './Navbar.module.css';
 
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import FilterListIcon from '@mui/icons-material/FilterList'; 
-import ShareIcon from '@mui/icons-material/Share';
-import GroupIcon from '@mui/icons-material/Group';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
-function Navbar() {
+
+function Navbar(props) {
+
+ 
+    
+    
+    // const images =[
+    //     {
+    //         "id":"1"
+    //         "url":"https://cdn.pixabay.com/photo/2023/05/13/16/40/landscape-7990899_1280.jpg"
+    //     },
+    //     {
+    //         "id":"2"
+    //         "url":"https://cdn.https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg.com/photo/2023/05/13/16/40/landscape-7990899_1280.jpg" 
+    //     },
+    // ]
+
+    
     return (
-        <div className={style.Nav} >
+        <div >
+        <div className={style.Nav}>
             <ul className={style.mainNav} >
                 <h2>Home Task Management</h2>
-                <li> <GroupIcon /> Workplace Visible</li>
-                <button><SportsEsportsIcon/>  Board</button>
-                <li> <TrendingUpIcon /> power ups</li>
-                <li><BoltIcon />Automation</li>
-                <li> <FilterListIcon /> Filter</li>
-                <li><ShareIcon /> Share</li>
-                <li><MoreHorizIcon /></li>
-            </ul>
+                <button onClick={props.handleBgChange}>Change Background</button>
+             </ul>
+        </div>
         </div>
     )
 }
