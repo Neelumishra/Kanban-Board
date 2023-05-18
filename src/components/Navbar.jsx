@@ -23,10 +23,10 @@ function Navbar(props) {
     return (
         <div >
         <div className={style.Nav}>
-            <ul className={style.mainNav} >
-                <h2>Home Task Management</h2>
+            <div className={style.mainNav} >
+                <h2 >Kanban Board</h2>
                 <button onClick={props.handleBgChange}>Change Background</button>
-             </ul>
+             </div>
         </div>
         </div>
     )

@@ -7,20 +7,19 @@
 
 .mainNav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: rgba(250, 235, 215, 0.38);
     margin-top: -1%;
-    margin-left: -0.5%;
-    margin-right: -0.5%;
-    cursor: pointer;
    
+    cursor: pointer;
+   padding:.5rem ;
 
 
 
 }
 
 .mainNav button {
-    background-color: rgba(137, 90, 3, 0.339);
+    background-color: #e8d0bf;
     border: none;
     border-radius: 5px;
     font-size: medium;
@@ -31,23 +30,14 @@
     box-shadow: rgba(0, 0, 0, 0.88) 1.95px 1.95px 2.6px;
 }
 
-.mainNav ul {
-    margin-top: 0;
-}
-
-.mainNav li {
-
-    list-style: none;
-    font-size: medium;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 1rem;
-}
 
 .mainNav h2 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: large;
     color: rgb(91, 16, 16);
-    padding-top: .5rem;
+   
+   
+
 }
 
 li:hover {
