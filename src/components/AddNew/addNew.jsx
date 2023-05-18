@@ -2,19 +2,32 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { todolist } from "../../store/store";
 import { v4 as uuidv4 } from "uuid";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
 function AddNew({ type, parentId }) {
   const [inputValue, setInputValue] = useState("");
   const [isvisible, setIsvisble] = useState(false);
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
+
   function openform() {
     setIsvisble(true);
   }
+
   function hideform() {
     setIsvisble(false);
   }
+
   function submithandle(e) {
     e.preventDefault();
+
+    if (inputValue.trim() === "") {
+      setError(true);
+      return;
+    }
+
     if (type) {
       dispatch(
         todolist.actions.addCard({
@@ -26,23 +39,43 @@ function AddNew({ type, parentId }) {
     } else {
       dispatch(todolist.actions.onlist({ id: uuidv4(), title: inputValue }));
     }
+
     hideform();
     setInputValue("");
   }
+
+  function handleClose() {
+    setError(false);
+  }
+
   return (
     <div>
+      <Snackbar
+        open={error}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Field cannot be left blank
+        </MuiAlert>
+      </Snackbar>
+
       <button
         onClick={openform}
         style={{
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           backgroundColor: "white",
-          width: `${type?"100%":"15rem"}`,
+          width: `${type ? "100%" : "15rem"}`,
           padding: "10px",
           color: "black",
           border: "none",
           borderRadius: "10px",
           marginBottom: "3px",
-          cursor:"pointer"
+          cursor: "pointer",
         }}
       >
         + Add {type ? "a Card" : "Another List"}
@@ -56,18 +89,16 @@ function AddNew({ type, parentId }) {
           width: "auto",
         }}
       >
-        {" "}
         {isvisible && (
           <form onSubmit={submithandle}>
             <input
               placeholder={type ? "Enter Task Name" : "Enter List Title.."}
               style={{
-                width:type?"100%": "13rem",
+                width: type ? "100%" : "13rem",
                 textAlign: "center",
                 height: "1.5rem",
                 marginTop: "0.2rem",
                 marginBottom: "5px",
-               
                 border: "2px solid #0c66e4",
               }}
               value={inputValue}
@@ -86,7 +117,7 @@ function AddNew({ type, parentId }) {
                 margin: "0.2rem",
                 borderRadius: "4px",
                 marginLeft: "3rem",
-                cursor:"pointer"
+                cursor: "pointer",
               }}
             >
               {type ? "Add Card" : "Add List"}
@@ -96,7 +127,7 @@ function AddNew({ type, parentId }) {
               onClick={hideform}
               style={{
                 fontWeight: "bold",
-                cursor:"pointer",
+                cursor: "pointer",
                 padding: "8px",
                 color: "black",
                 border: "none",

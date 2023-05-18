@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
+    "@mui/joy": "^5.0.0-alpha.80",
     "@mui/styled-engine": "^5.12.3",
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "^10.4.14",

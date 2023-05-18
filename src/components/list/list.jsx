@@ -22,7 +22,7 @@ function List() {
           <Droppable droppableId={e.id} key={uuidv4()}>
             {(provided) => (
               <div
-                className="helloji"
+               
                 key={uuidv4()}
                 style={{ width: "20%", padding: "5px" }}
                 ref={provided.innerRef}
