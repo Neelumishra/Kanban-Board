@@ -52,6 +52,16 @@ export const todolist = createSlice({
       });
       localStorage.setItem("list", JSON.stringify(state));
     },
+    onUpdateList: (state, action) => {
+      const { id, listInputValue } = action.payload;
+      state?.list?.map((e) => {
+        if(e.id==id){
+          e.title = listInputValue;
+        }
+          
+      });
+      localStorage.setItem("list", JSON.stringify(state));
+    },
     onPrority: (state, action) => {
       const { childId, Priority } = action.payload;
       state?.list?.map((e) => {
@@ -64,16 +74,33 @@ export const todolist = createSlice({
       localStorage.setItem("list", JSON.stringify(state));
     },
     onComment: (state, action) => {
-       const { childId, comment } = action.payload;
-       state?.list?.map((e) => {
-         e?.children?.map((child, index) => {
-           if (childId == child.id) {
-             child.comment = comment;
-           }
-         });
-       });
-       localStorage.setItem("list", JSON.stringify(state));
+      const { childId, comment } = action.payload;
+      const data = {
+        time: getTime(),
+        comment: comment,
+      };
+
+      state?.list?.map((e) => {
+        e?.children?.map((child, index) => {
+          if (childId === child.id) {
+            if (child.comment) {
+              child.comment = [...child.comment, data];
+            } else {
+              child.comment = [data];
+            }
+          }
+        });
+      });
+
+      localStorage.setItem("list", JSON.stringify(state));
+
+      function getTime() {
+        const date = new Date();
+        const timeStamp = date.toLocaleString(); // Retrieve both time and date
+        return timeStamp;
+      }
     },
+
     onremove: (state, action) => {
       const { id } = action.payload;
       state?.list?.map((e) => {

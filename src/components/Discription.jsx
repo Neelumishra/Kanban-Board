@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Discription.module.css";
 import { BsCreditCard2Back } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { todolist } from "../store/store";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Avatar from "@mui/joy/Avatar";
 function Discription() {
   const [random, setRandom] = useState(Math.floor(Math.random() * 50));
@@ -13,10 +14,14 @@ function Discription() {
   const [title, settitle] = useState("");
   const [discription, setDiscription] = useState("");
   const [editable, setEditable] = useState(false);
+  const [describe, setDescribe] = useState(false);
   const [priority, setPriority] = useState("");
   const [Assign, setAssign] = useState("");
   const [time, setTime] = useState("");
- const [comment, setComment] = useState("");
+  const [comment, setComment] = useState([]);
+  const [List, setList] = useState("");
+  
+
   useEffect(() => {
     dataFetch();
   }, []);
@@ -31,40 +36,37 @@ function Discription() {
     console.log("image", images);
   }
   let { paramsid } = useParams();
+  const inputref=useRef()
   let navigate = useNavigate();
 
   let dispatch = useDispatch();
   const list = useSelector((state) => {
     return state.Todo.list;
   });
+  function handleClickDecription() {
+    setDescribe(true);
+  }
   console.log(list);
   useEffect(() => {
     list.map((e) => {
       e?.children?.map((child) => {
+        setList(e);
         if (child.id == paramsid) {
           settitle(child.title);
           setPriority(child.Priority);
           setAssign(child.AssignName);
           console.log(child.description);
           setDiscription(child.description);
-          setTime(getTime(child.dts));
-          setComment(child.comment)
+         
+          setComment(child.comment);
           console.log(discription);
+          console.log("commemnrjn", child.comment);
         }
       });
     });
 
-    function getTime(dts) {
-      // some cal
-      if (!dts) return "0";
-      const date = new Date();
-      const timeStamp = date.getTime();
-      const currentTime = timeStamp - dts;
-      const minutes = Math.floor(currentTime / 60000);
-
-      return minutes;
-    }
-  }, []);
+    
+  }, [list]);
   function handleNaviagte() {
     navigate("/");
   }
@@ -74,6 +76,7 @@ function Discription() {
   };
 
   const handleBlur = () => {
+    setDescribe(false);
     setEditable(false);
   };
 
@@ -93,15 +96,17 @@ function Discription() {
       })
     );
   }
-  function handleComment(e){
-   setComment(e.target.value);
-    dispatch(
-      todolist.actions.onComment({
-        childId: paramsid,
-        comment: e.target.value,
-      })
-    );
+  function handleClickComment(){
+    let value=inputref.current.value;
+     setComment(value);
+     dispatch(
+       todolist.actions.onComment({
+         childId: paramsid,
+         comment: value,
+       })
+     );
   }
+  
   function handlePrority(e) {
     setPriority(e.target.value);
     dispatch(
@@ -228,17 +233,24 @@ function Discription() {
           <div className={styles.second}>
             <h4>Description</h4>
 
-            <p>{discription}</p>
-            <textarea
-              style={{ width: "26.5rem", height: "3rem", marginBottom: "1rem" }}
-              type="textarea"
-              placeholder="Add a more detailed description..."
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleDescription(e);
-                }
-              }}
-            ></textarea>
+            {describe ? (
+              <textarea
+                style={{
+                  value: { discription },
+                  width: "26.5rem",
+                  height: "3rem",
+                  marginBottom: "1rem",
+                  border: "none",
+                }}
+                onBlur={handleBlur}
+                autoFocus
+                type="textarea"
+                placeholder="Add a more detailed description..."
+                onChange={handleDescription}
+              ></textarea>
+            ) : (
+              <p onClick={handleClickDecription}>{discription}</p>
+            )}
           </div>
         </div>
         <div className={styles.mainthird}>
@@ -254,37 +266,67 @@ function Discription() {
             <span>
               <Avatar src={images} />
             </span>
-            <input
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleComment(e);
-                }
+            <div
+              style={{
+                height: "2rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-              style={{ width: "25rem", marginRight: "-5rem" }}
-              placeholder="Write a comment..."
-            ></input>
+            >
+              {" "}
+              <input
+                ref={inputref}
+                style={{
+                  width: "20rem",
+                  marginRight: "-5rem",
+                  border: "1px solid",
+                  autoFocus: "false",
+                  backgroundColor: "rgb(236, 243, 243)",
+                  height: "2rem",
+                }}
+                placeholder="Write a comment..."
+              ></input>
+              <span
+                style={{ marginLeft: "3rem", color: "rgb(24, 238, 24)" }}
+                onClick={handleClickComment}
+              >
+                <CheckCircleIcon />
+              </span>
+            </div>
           </div>
-          <div>
-           {comment&& <p
-              style={{ marginLeft: "3.6rem", fontFamily: "cursive" }}
-            >{`💬${comment}`}</p>}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              gap: "2rem",
-              alignItems: "center",
-              marginTop: "2rem",
-            }}
-          >
-            <span>
-              <Avatar src={images} />
-            </span>
-            <span>
-              <b>{Assign} </b>added in {title} Card
-            </span>
 
-            <span className={styles.time}>{time} minutes ago</span>
+          <div style={{}}>
+            {Array.isArray(comment) &&
+              comment.map((e) => (
+                <span>
+                  {
+                    <>
+                      <p
+                        style={{
+                          paddingLeft: "1rem",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <span>
+                          {" "}
+                          {`✅ ${e.comment} has added to ${title} Card`}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "small",
+                            marginLeft: "1rem",
+                          }}
+                        >
+                          {e.time}
+                        </span>
+                      </p>
+                    </>
+                  }
+                </span>
+              ))}
           </div>
         </div>
       </div>
