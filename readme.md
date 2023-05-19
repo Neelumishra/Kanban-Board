@@ -1,33 +1,53 @@
-# Kanban-Board-Doc
+# KanbanBoard
 
-##Datastrectures
+This project implements a simple Kanban Board application for managing tasks and their progress. The application allows users to create tasks, move them between different stages (ToDo, In Progress, Completed), and track their progress.
 
-toDoList: {
+## Datastructures
 
-name: "ToDo"
-tasks: [
-    {id: 1 , title: "Project 1" , description: , createdAt: , order: }
-]
+      TodoList: {list:[{ListName:"List1":cardlist:[
+{
+TaskName:"Task-1",
+description:"",
+Activity:"",
+Prority:"",
+Assign:"",
+
+        }
+    ]
+    }, {ListName:"List2",
+        cardlist:[
+        {
+            TaskName:"Task-2",
+            description:"",
+            Activity:"",
+            Prority:"",
+            Assign:"",
+
+        }
+    ]
+    }
+    ]
+
 }
 
-inProgressList: {
+## Live Demo
 
-name: "In Progress"
-tasks: [
-    {id: 2 , title: "Project 2" , description: , createdAt:, order: }
-]
-}
+You can access the live demo of the Kanban Board application here.
+https://kanban-project-sivj.vercel.app/
 
-completedList: {
+## Features
 
-name: "Completed"
-tasks: [
-    {id: 3 , title: "Project 3" , description: , createdAt: , order: }
-]
-}
+### >Create tasks and assign them to different stages (ToDo, In Progress, Completed).
 
-# Contributer
-Krushna Gaikwad,
-Madhvi Malviya,
-Neelu Mishra,
-Rhutik Thakare
+### >Drag and drop tasks between stages to update their progress.
+
+### >Edit task details such as title and description.
+
+### >Delete tasks that are no longer needed.
+
+## Acknowledgments
+
+Neelu Mishra - contributed to the project
+Krushna Gaikwad - contributed to the project
+Rhutik Thakare - contributed to the project
+Madhvi Malviya - contributed to the project
