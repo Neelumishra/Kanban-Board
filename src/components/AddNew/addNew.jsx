@@ -39,6 +39,7 @@ function AddNew({ type, parentId }) {
         })
       );
       setSuccess(true);
+     
     } else {
       dispatch(todolist.actions.onlist({ id: uuidv4(), title: inputValue }));
       setSuccess(true);
@@ -71,23 +72,24 @@ function AddNew({ type, parentId }) {
           Field cannot be left blank
         </MuiAlert>
       </Snackbar>
-      <Snackbar
-        open={success}
-        autoHideDuration={6000}
-        onClose={handleCloseSuccess}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        <MuiAlert
+      {success && (
+        <Snackbar
+          open={success}
           onClose={handleCloseSuccess}
-          severity="success"
-          sx={{ width: "100%" }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
         >
-          {type ? "Card" : "List"} has been Successfully Added
-        </MuiAlert>
-      </Snackbar>
+          <MuiAlert
+            
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            {type ? "Card" : "List"} has been Successfully Added
+          </MuiAlert>
+        </Snackbar>
+      )}
 
       <button
         onClick={openform}
