@@ -54,7 +54,8 @@ https://heartfelt-sopapillas-9ef897.netlify.app/
 - Delete tasks that are no longer needed.
 <br/>
 <br/>
-## Acknowledgments
+
+##  Acknowledgments
 
 - Neelu Mishra - contributed to the project
 - Krushna Gaikwad - contributed to the project
