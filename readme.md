@@ -38,7 +38,7 @@ This project implements a simple Kanban Board application for managing tasks and
 ## Live Demo
 
 You can access the live demo of the Kanban Board application here.
-https://tiny-twilight-1157ff.netlify.app/
+https://snazzy-toffee-8235cb.netlify.app/
 
 <br/>
 

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { todolist } from "../store/store";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Avatar from "@mui/joy/Avatar";
 function Discription() {
   const [random, setRandom] = useState(Math.floor(Math.random() * 50));
@@ -291,7 +292,7 @@ function Discription() {
                 style={{ marginLeft: "3rem", color: "rgb(24, 238, 24)" }}
                 onClick={handleClickComment}
               >
-                <CheckCircleIcon />
+                <AddCircleIcon />
               </span>
             </div>
           </div>
