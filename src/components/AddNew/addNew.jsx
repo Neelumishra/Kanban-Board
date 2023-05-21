@@ -22,10 +22,9 @@ function AddNew({ type, parentId }) {
   }
 
   function submithandle(e) {
-    
     e.preventDefault();
- 
-    if (inputValue.trim() === "") {
+
+    if (inputValue === "") {
       setError(true);
       return;
     }
@@ -39,7 +38,6 @@ function AddNew({ type, parentId }) {
         })
       );
       setSuccess(true);
-     
     } else {
       dispatch(todolist.actions.onlist({ id: uuidv4(), title: inputValue }));
       setSuccess(true);
@@ -81,11 +79,7 @@ function AddNew({ type, parentId }) {
             horizontal: "right",
           }}
         >
-          <MuiAlert
-            
-            severity="success"
-            sx={{ width: "100%" }}
-          >
+          <MuiAlert severity="success" sx={{ width: "100%" }}>
             {type ? "Card" : "List"} has been Successfully Added
           </MuiAlert>
         </Snackbar>

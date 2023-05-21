@@ -12,6 +12,7 @@ function Body() {
 
   function handleDragEnd(result){
     console.log(result);
+    if(!result.destination)return;
     // Extract source and destination id from result
     const sourceId = result?.source?.droppableId;
     const destinationId = result?.destination?.droppableId;
@@ -22,6 +23,7 @@ function Body() {
     let holder1 = {}
     list.map((e) => {
       if (e.id == sourceId) {
+        //holder1 holds the drag object children
         holder1 = e.children[result.source.index];
         dispatch(
           todolist.actions.removechild({

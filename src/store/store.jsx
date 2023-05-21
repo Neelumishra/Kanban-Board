@@ -7,6 +7,7 @@ export const todolist = createSlice({
   name: "Todo",
   reducers: {
     onlist: (state, action) => {
+      //data structure={[{id,ListTitle},{}]}
       state?.list?.push(action.payload);
       localStorage.setItem("list", JSON.stringify(state));
     },
@@ -55,10 +56,9 @@ export const todolist = createSlice({
     onUpdateList: (state, action) => {
       const { id, listInputValue } = action.payload;
       state?.list?.map((e) => {
-        if(e.id==id){
+        if (e.id == id) {
           e.title = listInputValue;
         }
-          
       });
       localStorage.setItem("list", JSON.stringify(state));
     },
@@ -117,7 +117,11 @@ export const todolist = createSlice({
       const { destination, add, insertIndex } = action.payload;
       state.list.map((e) => {
         if (e.id == destination) {
-          e.children.splice(insertIndex, 0, add);
+          if ("children" in e) {
+            e.children.splice(insertIndex, 0, add);
+          }else{
+            e.children=[add]
+          }
         }
       });
       localStorage.setItem("list", JSON.stringify(state));
@@ -153,6 +157,5 @@ export const todolist = createSlice({
 export const store = configureStore({
   reducer: {
     Todo: todolist.reducer,
-  
   },
 });

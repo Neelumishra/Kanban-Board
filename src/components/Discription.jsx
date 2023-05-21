@@ -9,6 +9,7 @@ import { todolist } from "../store/store";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Avatar from "@mui/joy/Avatar";
+
 function Discription() {
   const [random, setRandom] = useState(Math.floor(Math.random() * 50));
   const [images, setImages] = useState([]);
@@ -18,10 +19,9 @@ function Discription() {
   const [describe, setDescribe] = useState(false);
   const [priority, setPriority] = useState("");
   const [Assign, setAssign] = useState("");
-  const [time, setTime] = useState("");
+
   const [comment, setComment] = useState([]);
   const [List, setList] = useState("");
-  
 
   useEffect(() => {
     dataFetch();
@@ -37,7 +37,7 @@ function Discription() {
     console.log("image", images);
   }
   let { paramsid } = useParams();
-  const inputref=useRef()
+  const inputref = useRef();
   let navigate = useNavigate();
 
   let dispatch = useDispatch();
@@ -58,15 +58,12 @@ function Discription() {
           setAssign(child.AssignName);
           console.log(child.description);
           setDiscription(child.description);
-         
           setComment(child.comment);
           console.log(discription);
           console.log("commemnrjn", child.comment);
         }
       });
     });
-
-    
   }, [list]);
   function handleNaviagte() {
     navigate("/");
@@ -97,17 +94,17 @@ function Discription() {
       })
     );
   }
-  function handleClickComment(){
-    let value=inputref.current.value;
-     setComment(value);
-     dispatch(
-       todolist.actions.onComment({
-         childId: paramsid,
-         comment: value,
-       })
-     );
+  function handleClickComment() {
+    let value = inputref.current.value;
+    setComment(value);
+    dispatch(
+      todolist.actions.onComment({
+        childId: paramsid,
+        comment: value,
+      })
+    );
   }
-  
+
   function handlePrority(e) {
     setPriority(e.target.value);
     dispatch(
@@ -198,7 +195,6 @@ function Discription() {
             <label
               style={{
                 background: "rgb(120, 194, 9)",
-
                 color: "white",
                 fontWeight: "bold",
               }}

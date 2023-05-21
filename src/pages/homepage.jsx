@@ -1,18 +1,12 @@
-import React from 'react'
-import Body from '../components/body/body';
-import Navbar from "../components/Navbar"
-function Homepage() {
+import React from "react";
+import Body from "../components/body/body";
 
-  
-  
+function Homepage() {
   return (
     <div>
-      {/* <Navbar/> */}
-      
-      <Body/>
-    
+      <Body />
     </div>
-  )
+  );
 }
 
-export default Homepage
+export default Homepage;
